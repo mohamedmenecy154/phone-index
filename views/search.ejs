@@ -4,14 +4,50 @@
         font-family: Righteous;
         color: white !important;
     }
+    .li{
+list-style: none;
+padding: 10px
+    }
+       .li:nth-child(odd){
+background: rgb(255, 226, 145);
+    }
 </style>
 <div class="main_div">
-    <form action="/register" method="POST">
+   
         <img style="display: block;margin:auto;width:200px;"
             src="http://getdrawings.com/free-icon/phone-icon-png-transparent-70.png">
 
-        <input name="search" class="form-control" placeholder="search by name or phone number" type="text">
-        <Button class=" reg btn btn-block btn-warning" type="submit">Search</Button>
-    </form>
+        <input id='search_input' name="search" class="form-control" placeholder="search by name or phone number" type="text">
+        <div class="results"></div>
+        
+        <Button class=" reg btn btn-block btn-warning" hidden='true' type="submit">Search</Button>
 </div>
 <%include partials/footer.ejs%>
+<script>
+
+
+
+$('#search_input').on('keyup',function(){
+      $.post("/search",
+      {
+        search: $('#search_input').val()
+      },
+      function(data, status){
+        $('.results').html('')
+        console.log(data)
+        if( $('#search_input').val()==''){ $('.results').html('')}else
+        if(data.rowCount==0){
+            $('.results').append('<li class="li">Nothing Found</li>');
+        }else{
+
+        data.rows.forEach(element => {
+           var final = element.name +'   '+ element.phone +'\n';
+        $('.results').append('<li class="li">'+final+'</li>');
+        
+            
+        });}
+        
+      });
+    });
+    
+    </script>
