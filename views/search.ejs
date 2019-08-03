@@ -50,7 +50,7 @@ $('#search_input').on('keyup',function(){
       });
     });
 
-    $('#search_input').on('change',function(){
+    $('#search_input').on('input',function(){
       $.post("/search",
       {
         search: $('#search_input').val()
