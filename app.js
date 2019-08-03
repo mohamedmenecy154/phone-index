@@ -33,14 +33,8 @@ app.get('/add', function (req, res) { res.render('add',{isadded:1}) });
 app.get('/signin', function (req, res) { res.render('sign_in') });
 app.get('/search', function (req, res) { res.render('search') });
 // ##########################################################################################################################################
-app.post('/register',function(req,res){
-    console.log(req.body)
 
-})
-app.post('/sigin',function(req,res){
-    console.log(req.body)
-
-})
+// listening to the postrequest from the frontend
 app.post('/add',function(req,res){
     var name = req.body.name;
     var phone = req.body.phone;
@@ -51,10 +45,15 @@ client.query("INSERT INTO index (name,phone) VALUES ('"+name+"','"+phone+"')",fu
 })
 
 })
+// front end sends somthing to search about it to the back end 
 
+// req.body is the data that i sent from the frontend  
+// .body is the specific data that i sent from the frontend
 app.post('/search',function(req,res){
 var name = req.body.search;
+// +name+ is the variable as if i write name he will search for the name as data in the database
 client.query("SELECT * FROM index WHERE name like '"+name+"%' limit 10",function(err,RES){
+    // sending to the frontend the res of the database
     res.send(RES)
 })
 })

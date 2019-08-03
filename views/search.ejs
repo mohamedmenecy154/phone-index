@@ -5,11 +5,12 @@
         color: white !important;
     }
     .li{
-list-style: none;
-padding: 10px
-    }
+        list-style: none;
+        padding: 10px
+    }   
+    /* to color odd results that showen after entering the letter that u searche for */
        .li:nth-child(odd){
-background: rgb(255, 226, 145);
+        background: rgb(255, 226, 145);
     }
 </style>
 <div class="main_div">
@@ -17,29 +18,45 @@ background: rgb(255, 226, 145);
         <img style="display: block;margin:auto;width:200px;"
             src="http://getdrawings.com/free-icon/phone-icon-png-transparent-70.png">
 
+            <!-- as we will use this id in javascript -->
         <input id='search_input' name="search" class="form-control" placeholder="search by name or phone number" type="text">
+        
+        <!-- the place where the resilts is showen -->
         <div class="results"></div>
         
-        <Button class=" reg btn btn-block btn-warning" hidden='true' type="submit">Search</Button>
+        <!-- <Button class=" reg btn btn-block btn-warning" hidden='true' type="submit">Search</Button> -->
 </div>
 <%include partials/footer.ejs%>
 <script>
 
 
 
+// afunction that excuted on keyup
 $('#search_input').on('keyup',function(){
+    // ajax
+    //to load result without refreshing the page
+    //sendig post request to the server
       $.post("/search",
       {
         search: $('#search_input').val()
       },
+      // data that the backend sent from the database
       function(data, status){
+          // 
         $('.results').html('')
         console.log(data)
-        if( $('#search_input').val()==''){ $('.results').html('')}else
+        // clear the result's div if there is no search input
+        if( $('#search_input').val()==''){ $('.results').html('')}
+        else
+        // show nothing found if the input doesn't match anything in the database
         if(data.rowCount==0){
             $('.results').append('<li class="li">Nothing Found</li>');
+            // matching the database with the search
         }else{
-
+            // data.rows is an array 
+            // .foreach to retrive each element in the database
+            // final is a variable that include the name and the phone no.
+            // append to show all results in the end 
         data.rows.forEach(element => {
            var final = element.name +'   '+ element.phone +'\n';
         $('.results').append('<li class="li">'+final+'</li>');
@@ -50,27 +67,6 @@ $('#search_input').on('keyup',function(){
       });
     });
 
-    $('#search_input').on('input',function(){
-      $.post("/search",
-      {
-        search: $('#search_input').val()
-      },
-      function(data, status){
-        $('.results').html('')
-        console.log(data)
-        if( $('#search_input').val()==''){ $('.results').html('')}else
-        if(data.rowCount==0){
-            $('.results').append('<li class="li">Nothing Found</li>');
-        }else{
 
-        data.rows.forEach(element => {
-           var final = element.name +'   '+ element.phone +'\n';
-        $('.results').append('<li class="li">'+final+'</li>');
-        
-            
-        });}
-        
-      });
-    });
     
     </script>

@@ -1,5 +1,6 @@
     body{
-      background: url(prism.png)
+      /* background: url(prism.png) */
+      background: rgb(131, 237, 246) !important;
     }
     .main_div{
         width: 90%;
@@ -9,7 +10,7 @@
         margin-top: 150px;
         border-radius: 15px;
         padding: 20px 15px;
-        background: rgb(160, 160, 160);
+        background: rgb(255, 255, 255);
 
     }
   .form-control{

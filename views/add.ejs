@@ -2,22 +2,30 @@
 <style>
     .reg {
         font-family: Righteous;
+        /* to overwrite high priority style */
         color: white !important;
     }
 </style>
+                <!-- this class in this tag is refer to bootstrap -->
 <div class="main_div">
+    <!-- post request -->
     <form action="/add" method="POST">
 
         <img style="display: block;margin:auto;width:200px;"
             src="http://getdrawings.com/free-icon/phone-icon-png-transparent-70.png">
+           
+
+        <!-- <% //embedded javascript code  %> -->
             <%if(isadded==1){}else if(isadded==2){%>
                 <div class="alert alert-success">Phone added</div>
             <%}else if(isadded==3){%>
                 <div class="alert alert-danger">something went wrong !!</div>
             <%}%>
-        
+        <!-- placeholder == the watermark in the textbox -->
             <input name="name" class="form-control" placeholder="Name" type="text">
         <input name="phone" class="form-control" placeholder="Phone number" type="text">
+
+        <!-- submit the form -->
         <Button class=" reg btn btn-block btn-warning" type="submit">Add</Button>
     </form>
 </div>
