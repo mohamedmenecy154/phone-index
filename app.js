@@ -1,5 +1,5 @@
 
-
+// starting the server
 var express = require('express');
 var app = express();
 //database postgresql
@@ -23,7 +23,7 @@ const client = new pg.Client({
 });
 //connect to database
 client.connect();
-//database cmd
+//database 
 client.query("create table index (id serial,name text,phone text)");
 // ##########################################################################################################################################
 //
@@ -34,7 +34,8 @@ app.get('/signin', function (req, res) { res.render('sign_in') });
 app.get('/search', function (req, res) { res.render('search') });
 // ##########################################################################################################################################
 
-// listening to the postrequest from the frontend
+
+// listening to the postrequest from the frontend to '/add'
 app.post('/add',function(req,res){
     var name = req.body.name;
     var phone = req.body.phone;

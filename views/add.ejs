@@ -6,9 +6,9 @@
         color: white !important;
     }
 </style>
-                <!-- this class in this tag is refer to bootstrap -->
+                <!-- this class is created for this div -->
 <div class="main_div">
-    <!-- post request -->
+    <!-- post request sends the number from the front end to a room in the backend-->
     <form action="/add" method="POST">
 
         <img style="display: block;margin:auto;width:200px;"
@@ -17,6 +17,7 @@
 
         <!-- <% //embedded javascript code  %> -->
             <%if(isadded==1){}else if(isadded==2){%>
+                
                 <div class="alert alert-success">Phone added</div>
             <%}else if(isadded==3){%>
                 <div class="alert alert-danger">something went wrong !!</div>
@@ -26,6 +27,9 @@
         <input name="phone" class="form-control" placeholder="Phone number" type="text">
 
         <!-- submit the form -->
+        <!-- reg is the class name 
+            btn btn block btn warning are  classes change the style from bootstrap options
+         -->
         <Button class=" reg btn btn-block btn-warning" type="submit">Add</Button>
     </form>
 </div>

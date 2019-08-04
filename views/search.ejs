@@ -40,11 +40,11 @@ $('#search_input').on('keyup',function(){
       {
         search: $('#search_input').val()
       },
+      
       // data that the backend sent from the database
       function(data, status){
           // 
         $('.results').html('')
-        console.log(data)
         // clear the result's div if there is no search input
         if( $('#search_input').val()==''){ $('.results').html('')}
         else
